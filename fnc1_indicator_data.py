@@ -32,6 +32,7 @@ def indicator(stock,b=3):
 
     # print(df_change.head(20))
 
+    # saving file
     file_path = os.path.join(f_path, f"{stock}_indicator.csv")
     df_change.to_csv(file_path,index=False)
 
