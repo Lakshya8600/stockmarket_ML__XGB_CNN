@@ -7,6 +7,7 @@ import csv
 import os
 import re
 
+# storing stock data to stock_data_csvs
 folder_path = "C:/Code/ml/stock_data_csvs"
 with open('CompanyNames.csv',mode='r',newline='') as file:
     reader = csv.reader(file)
