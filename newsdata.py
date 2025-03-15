@@ -27,8 +27,9 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 
 today = datetime.today()
 
-for b in range(45560,45730):
+for b in range(42442,45730):
 # b = 42442
+# b = 45729 gives date = 13 march 2025
     try:
         date = today - timedelta(days=45729-b+1)
         year = date.year
@@ -86,3 +87,4 @@ for b in range(45560,45730):
         file_path = os.path.join(folder_path, f"Not found{date_format}.csv")
         np.savetxt(file_path, numpy_array, delimiter=",", fmt="%s")
         
+

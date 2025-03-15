@@ -1,14 +1,17 @@
 # function-3:- tells if the sentences are similar or not, function inputs 2 strings and one optional score which is 75% by default. function returns binary that it matches or not
 
-import spacy
-from sentence_transformers import SentenceTransformer,util
+
+# import spacy
+# from sentence_transformers import SentenceTransformer,util
 
 # TO BE USED:-
 # implementing bert
 
-model1 = SentenceTransformer('all-MiniLM-L6-v2')
+# model1 = SentenceTransformer('all-MiniLM-L6-v2')
 
 def bert_similarity(sent1,sent2,score=75):
+    from sentence_transformers import SentenceTransformer,util
+    model1 = SentenceTransformer('all-MiniLM-L6-v2')
     embeddings = model1.encode([sent1,sent2],convert_to_tensor=True)
     similarity = util.pytorch_cos_sim(embeddings[0],embeddings[1])
     similarity_score = similarity.item()
