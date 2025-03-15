@@ -7,7 +7,12 @@ import csv
 import os
 import re
 
+<<<<<<< HEAD
 folder_path = "stock_data_csvs"
+=======
+# storing stock data to stock_data_csvs
+folder_path = "C:/Code/ml/stock_data_csvs"
+>>>>>>> d97a453d0fed16d63f11c20338a1fa11389366a6
 with open('CompanyNames.csv',mode='r',newline='') as file:
     reader = csv.reader(file)
     for row in reader:
