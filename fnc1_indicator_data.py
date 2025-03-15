@@ -7,7 +7,7 @@ import re
 
 # Define paths
 base_dir = os.path.dirname(__file__)  
-f_path = os.path.join(base_dir, "stock_data_modified_csvs")
+f_path = os.path.join(base_dir, "indicator_data_csvs")
 
 def indicator(stock,b=3):
         
