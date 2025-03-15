@@ -36,6 +36,8 @@ def indicator(stock,b=3):
     file_path = os.path.join(f_path, f"{stock}_indicator.csv")
     df_change.to_csv(file_path,index=False)
 
+    return df_change
+
 stock_name_path = os.path.join(base_dir,"CompanyNames.csv")
 with open(stock_name_path,mode='r',newline='') as file:
     reader = csv.reader(file)
