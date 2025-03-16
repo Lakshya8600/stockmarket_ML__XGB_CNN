@@ -1,3 +1,9 @@
+# FUNCTION 1:-
+# INPUT:- stock name and minimum percentage change (by default = 3)
+# OUTPUT:- a dataframe which contains : date, percentage change and indicator of desired change
+# DOES:- saves the dataframe as csv file for each stock input
+
+
 # This code also contains a function to calculate indicator 1,0,-1 logic (function-1)
 
 import os

@@ -1,4 +1,7 @@
-# function 2 => headline ka list import karo from data folder, give the function a csv, it will give you a csv file which contains list of words format + string format of headlines
+# FUNCTION-2:-
+# INPUT:- csv path
+# OUTPUT:- a dataframe containing list of words + string
+# WHY:- to get the headline from 'list of words' representation to string representation 
 
 import pandas as pd
 import requests
@@ -29,8 +32,8 @@ def ltos(csv_path):
 
 
 base_dir = os.path.dirname(__file__)  
-directory_path = os.path.join(base_dir, "data")
 save_path = os.path.join(base_dir,"news_data_string_lists")
+directory_path = os.path.join(base_dir, "data")
 
 file_list = os.listdir(directory_path)
 

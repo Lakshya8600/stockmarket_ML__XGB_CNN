@@ -1,3 +1,7 @@
+# FUNCTION-3:-
+# INPUT:- headline1,headline2 and score(which is by default set to 75; this score is similarity score)
+# OUTPUT:- binary 1 or 0: 1 for  similarity score greater than 75%
+
 # function-3:- tells if the sentences are similar or not, function inputs 2 strings and one optional score which is 75% by default. function returns binary that it matches or not
 
 
