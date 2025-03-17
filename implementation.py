@@ -11,13 +11,25 @@ import re
 from datetime import datetime
 
 # Function to check sentence similarity using BERT
+# def sent_sim(sent1, sent2, score=75):
+#     from sentence_transformers import SentenceTransformer, util
+#     model1 = SentenceTransformer('all-MiniLM-L6-v2')
+#     embeddings = model1.encode([sent1, sent2], convert_to_tensor=True)
+#     similarity = util.pytorch_cos_sim(embeddings[0], embeddings[1])
+#     similarity_score = similarity.item()
+#     return 1 if similarity_score >= (score / 100) else 0
+from sentence_transformers import SentenceTransformer, util
+import torch
+
+# Load the model once and move it to GPU if available
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+model = SentenceTransformer('all-MiniLM-L6-v2').to(device).half()  # Using float16 for speed
+
 def sent_sim(sent1, sent2, score=75):
-    from sentence_transformers import SentenceTransformer, util
-    model1 = SentenceTransformer('all-MiniLM-L6-v2')
-    embeddings = model1.encode([sent1, sent2], convert_to_tensor=True)
-    similarity = util.pytorch_cos_sim(embeddings[0], embeddings[1])
-    similarity_score = similarity.item()
-    return 1 if similarity_score >= (score / 100) else 0
+    embeddings = model.encode([sent1, sent2], convert_to_tensor=True, device=device)  # Use GPU
+    similarity_score = util.pytorch_cos_sim(embeddings[0], embeddings[1]).item()
+    return int(similarity_score >= (score / 100))
+
 
 # Import CSV from today_headlines_csvs
 def import_today(filename):
@@ -71,10 +83,12 @@ save_path = os.path.join(base_dir, "stock_prob_per_headline")
 
 for i in range(len(today_headlines)):
     
-    str1 = today_headlines.loc[i, "headline_text"]
+    str1 = today_headlines.loc[i, "headline_text"]  #ek ek karke headlines lega
     datelist = []
 
-    for j in range(1096):  # Iterate through 3 years
+    for j in range(7):  # Iterate through 3 years
+        if j<=5:
+            continue
         that_date = date - (j + 1)
         that_date = 20250312  # Hardcoded date for testing
 
@@ -82,6 +96,7 @@ for i in range(len(today_headlines)):
         for k in range(len(df)):
             str2 = df.loc[k, "headline_text"]
             sim_bin = sent_sim(str1, str2)
+            print("sent sim")
             if sim_bin == 1 and that_date not in datelist:
                 datelist.append(that_date)
 

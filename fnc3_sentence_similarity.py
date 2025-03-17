@@ -24,6 +24,11 @@ def bert_similarity(sent1,sent2,score=75):
 
     similarity_score = similarity.item()
     score = score/100
+    
+    # print(torch.cuda.is_available())
+    # print(torch.version.cuda)
+    # print(torch.cuda.device_name(0))
+
     if similarity_score>=score:
         return 1
     return 0
@@ -33,10 +38,17 @@ def bert_similarity(sent1,sent2,score=75):
 
 
 
-##OUTPUT TRIAL:-
-# s1 = "mahindra starts developing semiconductors"
-# s2 = "mahindra stops developing semiconductors"
-# output = bert_similarity(s1,s2)
+
+#OUTPUT TRIAL:-
+s1 = "mahindra starts developing semiconductors"
+s2 = "mahindra stops developing semiconductors"
+output = bert_similarity(s1,s2)
+print(output)
+s1 = "mahindra starts developing semiconductors"
+s2 = "mahindra stops developing semiconductors"
+output = bert_similarity(s1,s2)
+print(output)
+
 
 
 # #NOT TO BE USED, SPACY;

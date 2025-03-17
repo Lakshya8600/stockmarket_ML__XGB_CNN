@@ -1,19 +1,12 @@
-from datetime import datetime
+import torch
 
-today = datetime.today()
+# print("CUDA Available:",torch.cuda.is_available())
+# print("Number of GPUs:", torch.cuda.device_count())
+# if torch.cuda.is_available():
+#     print("GPU Name:",torch.cuda.get_device_name(0))
 
-# # print(today.year, today.month,today.day)
-# today.strftime("%Y%m%d")
-# print(today.strftime("%Y%m%d"))
-# date = int(today.strftime("%Y%m%d"))
-# # print(date+1)
+print("pytorch version:",torch.__version__)
+print("cuda available:",torch.cuda.is_available())
+print("cuda version:",torch.version.cuda)
+print("gpu name:",torch.cuda.get_device_name(0) if torch.cuda.is_available() else "None")
 
-
-# bb = 45729
-# that_day = 20250313
-# bl=date-that_day
-
-# b = bb + bl
-# print(b)
-date = str(today.strftime("%Y%m%d"))
-print(type(date))
