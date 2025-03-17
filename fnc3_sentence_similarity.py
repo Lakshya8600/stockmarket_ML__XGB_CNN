@@ -15,14 +15,23 @@
 
 def bert_similarity(sent1,sent2,score=75):
     from sentence_transformers import SentenceTransformer,util
-    model1 = SentenceTransformer('all-MiniLM-L6-v2')
-    embeddings = model1.encode([sent1,sent2],convert_to_tensor=True)
+    import torch
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model1 = SentenceTransformer('all-MiniLM-L6-v2', device=device) #load model on gpu if available
+    embeddings = model1.encode([sent1,sent2],convert_to_tensor=True).to(device) #move to gpu
     similarity = util.pytorch_cos_sim(embeddings[0],embeddings[1])
+
     similarity_score = similarity.item()
     score = score/100
     if similarity_score>=score:
         return 1
     return 0
+
+
+
+
+
 
 ##OUTPUT TRIAL:-
 # s1 = "mahindra starts developing semiconductors"
